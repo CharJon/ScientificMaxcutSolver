@@ -1,0 +1,211 @@
+instdir: "../test/data"
+
+instances:
+  - repo: local
+    set: [ "rest_test_set" ]
+    extensions:
+      - mc
+      - sol.json
+    items:
+      #- pm1s_100_3
+      - pw01_100_0
+      - mannino_k487b
+      #- bio-diseasome
+      #- ca-netscience
+      - g000981
+      - imgseg_138032
+  - repo: local
+    set: [ "rest_test_set" ]
+    extensions:
+      - mc
+      - sol.json
+    items:
+      #- bqp250-3
+      - gka2c
+      - gka4d
+      - gka5c
+      - gka7a
+      #- be120_3_5
+      #- be250_3
+  - repo: local
+    set: [ "t2d", "t2d_55" ]
+    extensions:
+      - mc
+      - sol.json
+    items:
+      - t2d_pm_55_0
+      - t2d_pm_55_1
+      - t2d_pm_55_2
+      - t2d_pm_55_3
+      - t2d_pm_55_4
+      - t2d_pm_55_5
+      - t2d_pm_55_6
+      - t2d_pm_55_7
+      - t2d_pm_55_8
+      - t2d_pm_55_9
+  - repo: local
+    set: [ "t2d", "t2d_60" ]
+    extensions:
+      - mc
+      - sol.json
+    items:
+      - t2d_pm_60_0
+      - t2d_pm_60_1
+      - t2d_pm_60_2
+      - t2d_pm_60_3
+      - t2d_pm_60_4
+      - t2d_pm_60_5
+      - t2d_pm_60_6
+      - t2d_pm_60_7
+      - t2d_pm_60_8
+      - t2d_pm_60_9
+  - repo: local
+    set: [ "t2d", "t2d_65" ]
+    extensions:
+      - mc
+      - sol.json
+    items:
+      - t2d_pm_65_0
+      - t2d_pm_65_1
+      - t2d_pm_65_2
+      - t2d_pm_65_3
+      - t2d_pm_65_4
+      - t2d_pm_65_5
+      - t2d_pm_65_6
+      - t2d_pm_65_7
+      - t2d_pm_65_8
+      - t2d_pm_65_9
+  - repo: local
+    set: [ "pm1s", "not-t2d" ]
+    extensions:
+      - mc
+      - sol.json
+    items:
+      - pm1s_100_0
+      - pm1s_100_1
+      - pm1s_100_2
+      - pm1s_100_3
+      - pm1s_100_4
+      - pm1s_100_5
+      - pm1s_100_6
+      - pm1s_100_7
+      - pm1s_100_8
+      - pm1s_100_9
+  - repo: local
+    set: [ "all_bqp", "be", "not-t2d" ]
+    extensions:
+      - mc
+      - sol.json
+    items:
+      - be120_3_1
+      - be120_3_2
+      - be120_3_3
+      - be120_3_4
+      - be120_3_5
+      - be120_3_6
+      - be120_3_7
+      - be120_3_8
+      - be120_3_9
+      - be120_3_10
+      - be250_1
+      - be250_2
+      - be250_3
+      - be250_4
+  - repo: local
+    set: [ "all_bqp", "bqp", "not-t2d" ]
+    extensions:
+      - mc
+      - sol.json
+    items:
+      - bqp250-1
+      - bqp250-2
+      - bqp250-3
+      - bqp250-4
+
+builds:
+  - name: sms
+    git: # TODO!
+    recursive-clone: true
+    configure:
+      - args:
+          - 'cmake'
+          - '-DCMAKE_INSTALL_PREFIX=@THIS_PREFIX_DIR@'
+          - '-DCMAKE_BUILD_TYPE=Release'
+          - '-DTESTS=OFF'
+          - '@THIS_CLONE_DIR@'
+    compile:
+      - args:
+          - 'make'
+          - '-j@PARALLELISM@'
+    install:
+      # TODO: This is a bit hacky, we might want to move to a real installation in the future
+      - args:
+          - 'mkdir'
+          - '-p'
+          - '@THIS_PREFIX_DIR@/bin'
+      - args:
+          - 'cp'
+          - '@THIS_COMPILE_DIR@/sms'
+          - '@THIS_PREFIX_DIR@/bin/sms'
+
+revisions:
+  - name: 'branchrules'
+    build_version:
+      'sms': 'acda-paper'
+
+
+experiments:
+  - name: 'sms-solving'
+    use_builds: [ sms ]
+    args: [ 'sms', '@INSTANCE:mc@', '--seed=@REPETITION@', '@EXTRA_ARGS@', '--stats=@OUTPUT:stats.json@', '--stats-scip=@OUTPUT:scip_stats.txt@', '--history=@OUTPUT:history.json@' ]
+    repeat: 3
+    stdout: out
+    output:
+      extensions: [ 'out', 'stats.json' , 'scip_stats.txt', 'scip_stats.root.txt', 'history.json' ]
+  - name: 'sms-solutions'
+    use_builds: [ sms ]
+    args: [ 'sms', '@INSTANCE:mc@', '@EXTRA_ARGS@', '--solution=@OUTPUT:sol.json@', '--stats=@OUTPUT:stats.json@' ]
+    stdout: out
+    output:
+      extensions: [ 'out', 'stats.json' , 'sol.json' ]
+  - name: 'sms-warmstart'
+    use_builds: [ sms ]
+    args: [ 'sms', '@INSTANCE:mc@', '@EXTRA_ARGS@', '--seed=@REPETITION@', '--warm-start-solution=@INSTANCE:sol.json@', '--statsfile=@OUTPUT:stats.json@' , '--stats-scip=@OUTPUT:scip_stats.txt@', '--timelimit=3600' ]
+    repeat: 3
+    stdout: out
+    output:
+      extensions: [ 'out', 'stats.json' , 'sol.json', 'scip_stats.txt', 'scip_stats.root.txt' ]
+
+variants:
+  - axis: 'parameter'
+    items:
+      - name: 'default'
+        extra_args: [ '--paramfile=../params/default.set' ]
+      - name: 'branch-degree-dynamic'
+        extra_args: [ '--paramfile=../params/ws_branch-degree-dynamic.set' ]
+      - name: 'branch-degree-static'
+        extra_args: [ '--paramfile=../params/ws_branch-degree-static.set' ]
+      - name: 'branch-scip-default'
+        extra_args: [ '--paramfile=../params/ws_branch-scip-default.set' ]
+      - name: 'branch-scip-pscost'
+        extra_args: [ '--paramfile=../params/ws_branch-scip-pscost.set' ]
+      - name: 'branch-edges-only-scip-default'
+        extra_args: [ '--paramfile=../params/ws_eo_branch-scip-default.set' , '--node-vars=false' ]
+      - name: 'branch-edges-only-scip-pscost'
+        extra_args: [ '--paramfile=../params/ws_eo_branch-scip-pscost.set' , '--node-vars=false' ]
+
+matrix:
+  include:
+    - experiments: [ 'sms-warmstart' ]
+      variants: [ 'branch-scip-default', 'branch-scip-pscost', 'branch-degree-static', 'branch-degree-dynamic' ]
+      revisions: [ 'branchrules' ]
+      instsets: [ 't2d' ]
+    - experiments: [ 'sms-warmstart' ]
+      variants: [ 'branch-scip-default', 'branch-scip-pscost', 'branch-degree-static', 'branch-degree-dynamic', 'branch-edges-only-scip-default',  'branch-edges-only-scip-pscost' ]
+      revisions: [ 'branchrules' ]
+      instsets: [ 'not-t2d' ]
+    - experiments: [ 'sms-warmstart' ]
+      variants: [ 'branch-degree-dynamic' ]
+      revisions: [ 'branchrules' ]
+      instsets: [ 'rest_test_set' ]
+

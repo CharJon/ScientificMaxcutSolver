@@ -1,0 +1,16 @@
+file,error
+error_delimiter.bq,uses tabs instead of whitespace
+error_too_many_entries.bq,has 5 lines although 4 are specified
+error_0_entry.bq,contains a 0 entry
+error_comment.bq,comment without # in the beginning of the file
+error_comment_in_file.bq,comment inside the file instead of beginning
+error_header_missing.bq,header info is missing
+error_no_entries.bq,no entries given
+error_no_weight.bq,weight entry missing
+error_id_letter.bq,uses letters instead of integer ids
+error_id_range_0.bq,reference 0 od
+error_id_range_5.bq,reference id outside of range
+error_to_few_entries.bq,has 3 entries although 4 are specified
+error_double_definition_1.bq,has cell i,j (i > j) defined twice
+error_double_definition_2.bq,has cell j,i (i > j) defined twice
+error_double_definition_3.bq,has cell i,i defined twice

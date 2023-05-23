@@ -1,0 +1,349 @@
+# SCIP version 8.0.2
+
+# number of threads used for solving the LP (0: automatic)
+# [type: int, advanced: TRUE, range: [0,64], default: 0]
+lp/threads = 1
+
+# the minimum number of threads used during parallel solve
+# [type: int, advanced: FALSE, range: [0,64], default: 1]
+parallel/minnthreads = 1
+
+# the maximum number of threads used during parallel solve
+# [type: int, advanced: FALSE, range: [0,64], default: 8]
+parallel/maxnthreads = 1
+
+# LP algorithm for solving initial LP relaxations (automatic 's'implex, 'p'rimal simplex, 'd'ual simplex, 'b'arrier, barrier with 'c'rossover)
+# [type: char, advanced: FALSE, range: {spdbc}, default: s]
+lp/initalgorithm = d
+
+# LP algorithm for resolving LP relaxations if a starting basis exists (automatic 's'implex, 'p'rimal simplex, 'd'ual simplex, 'b'arrier, barrier with 'c'rossover)
+# [type: char, advanced: FALSE, range: {spdbc}, default: s]
+lp/resolvealgorithm = d
+
+# should degree be calculated based on fee variables only
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+branching/degree/dynamic = TRUE
+
+# priority of branching rule <pscost>
+# [type: int, advanced: FALSE, range: [-536870912,536870911], default: ???]
+branching/degree/priority = 100000
+
+# priority of branching rule <pscost>
+# [type: int, advanced: FALSE, range: [-536870912,536870911], default: 2000]
+branching/pscost/priority = 2000
+
+# priority of branching rule <random>
+# [type: int, advanced: FALSE, range: [-536870912,536870911], default: -100000]
+branching/random/priority = -100000
+
+# priority of branching rule <relpscost>
+# [type: int, advanced: FALSE, range: [-536870912,536870911], default: 10000]
+branching/relpscost/priority = 10000
+
+# priority of cut selection rule <hybrid>
+# [type: int, advanced: FALSE, range: [-536870912,1073741823], default: 8000]
+cutselection/hybrid/priority = 8000
+
+# weight of efficacy in cut score calculation
+# [type: real, advanced: FALSE, range: [0,1e+98], default: 1]
+cutselection/hybrid/efficacyweight = 1
+
+# weight of directed cutoff distance in cut score calculation
+# [type: real, advanced: FALSE, range: [0,1e+98], default: 0]
+cutselection/hybrid/dircutoffdistweight = 0
+
+# weight of objective parallelism in cut score calculation
+# [type: real, advanced: FALSE, range: [0,1e+98], default: 0.1]
+cutselection/hybrid/objparalweight = 0.1
+
+# weight of integral support in cut score calculation
+# [type: real, advanced: FALSE, range: [0,1e+98], default: 0.1]
+cutselection/hybrid/intsupportweight = 0.1
+
+# minimal orthogonality for a cut to enter the LP
+# [type: real, advanced: FALSE, range: [0,1], default: 0.9]
+cutselection/hybrid/minortho = 0.9
+
+# minimal orthogonality for a cut to enter the LP in the root node
+# [type: real, advanced: FALSE, range: [0,1], default: 0.9]
+cutselection/hybrid/minorthoroot = 0.9
+
+# should conflict analysis be enabled?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+conflict/enable = FALSE
+
+# maximal number of presolving rounds (-1: unlimited, 0: off)
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: -1]
+presolving/maxrounds = 0
+
+# maximal number of restarts (-1: unlimited)
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: -1]
+presolving/maxrestarts = 0
+
+# maximal additional number of separation rounds in subsequent price-and-cut loops (-1: no additional restriction)
+# [type: int, advanced: TRUE, range: [-1,2147483647], default: 1]
+separating/maxaddrounds = 2
+
+# maximal number of cuts separated per separation round (0: disable local separation)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 100]
+separating/maxcuts = 10000
+
+# maximal number of separated cuts at the root node (0: disable root node separation)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 2000]
+separating/maxcutsroot = 10000
+
+# maximum age a cut can reach before it is deleted from the global cut pool, or -1 to keep all cuts
+# [type: int, advanced: TRUE, range: [-1,2147483647], default: 80]
+separating/cutagelimit = 10
+
+# separation frequency for the global cut pool (-1: disable global cut pool, 0: only separate pool at the root)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+separating/poolfreq = 5
+
+# maximal number of consecutive separation rounds without objective or integrality improvement in local nodes (-1: no additional restriction)
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: 1]
+separating/maxstallrounds = 2
+
+# should cutpool separate only cuts with high relative efficacy?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+separating/filtercutpoolrel = TRUE
+
+# minimal efficacy for a cut to enter the LP
+# [type: real, advanced: FALSE, range: [0,1e+98], default: 0.0001]
+separating/minefficacy = 0.0001
+
+# minimal efficacy for a cut to enter the LP in the root node
+# [type: real, advanced: FALSE, range: [0,1e+98], default: 0.0001]
+separating/minefficacyroot = 0.0001
+
+# frequency for calling primal heuristic <adaptivediving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 5]
+heuristics/mst/freq = -1
+
+# frequency for calling primal heuristic <adaptivediving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 1]
+heuristics/bur02/freq = -1
+
+# frequency for calling primal heuristic <adaptivediving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 5]
+heuristics/adaptivediving/freq = -1
+
+# frequency for calling primal heuristic <clique> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+heuristics/clique/freq = -1
+
+# frequency for calling primal heuristic <completesol> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+heuristics/completesol/freq = -1
+
+# frequency for calling primal heuristic <conflictdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+heuristics/conflictdiving/freq = -1
+
+# frequency for calling primal heuristic <crossover> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 30]
+heuristics/crossover/freq = -1
+
+# frequency for calling primal heuristic <distributiondiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+heuristics/distributiondiving/freq = -1
+
+# frequency for calling primal heuristic <farkasdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+heuristics/farkasdiving/freq = -1
+
+# frequency for calling primal heuristic <feaspump> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 20]
+heuristics/feaspump/freq = -1
+
+# frequency for calling primal heuristic <fracdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+heuristics/fracdiving/freq = -1
+
+# frequency for calling primal heuristic <gins> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 20]
+heuristics/gins/freq = -1
+
+# frequency for calling primal heuristic <guideddiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+heuristics/guideddiving/freq = -1
+
+# frequency for calling primal heuristic <indicator> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 1]
+heuristics/indicator/freq = -1
+
+# frequency for calling primal heuristic <intshifting> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+heuristics/intshifting/freq = -1
+
+# frequency for calling primal heuristic <linesearchdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+heuristics/linesearchdiving/freq = -1
+
+# frequency for calling primal heuristic <locks> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+heuristics/locks/freq = -1
+
+# frequency for calling primal heuristic <lpface> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 15]
+heuristics/lpface/freq = -1
+
+# frequency for calling primal heuristic <alns> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 20]
+heuristics/alns/freq = -1
+
+# frequency for calling primal heuristic <nlpdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+heuristics/nlpdiving/freq = -1
+
+# frequency for calling primal heuristic <multistart> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+heuristics/multistart/freq = -1
+
+# frequency for calling primal heuristic <mpec> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 50]
+heuristics/mpec/freq = -1
+
+# frequency for calling primal heuristic <objpscostdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 20]
+heuristics/objpscostdiving/freq = -1
+
+# frequency for calling primal heuristic <ofins> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+heuristics/ofins/freq = -1
+
+# frequency for calling primal heuristic <oneopt> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 1]
+heuristics/oneopt/freq = -1
+
+# frequency for calling primal heuristic <padm> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+heuristics/padm/freq = -1
+
+# frequency for calling primal heuristic <pscostdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+heuristics/pscostdiving/freq = -1
+
+# frequency for calling primal heuristic <randrounding> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 20]
+heuristics/randrounding/freq = -1
+
+# frequency for calling primal heuristic <rens> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+heuristics/rens/freq = -1
+
+# frequency for calling primal heuristic <reoptsols> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+heuristics/reoptsols/freq = -1
+
+# frequency for calling primal heuristic <rins> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 25]
+heuristics/rins/freq = -1
+
+# frequency for calling primal heuristic <rootsoldiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 20]
+heuristics/rootsoldiving/freq = -1
+
+# frequency for calling primal heuristic <rounding> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 1]
+heuristics/rounding/freq = -1
+
+# frequency for calling primal heuristic <shiftandpropagate> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+heuristics/shiftandpropagate/freq = -1
+
+# frequency for calling primal heuristic <shifting> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+heuristics/shifting/freq = -1
+
+# frequency for calling primal heuristic <simplerounding> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 1]
+heuristics/simplerounding/freq = -1
+
+# frequency for calling primal heuristic <subnlp> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 1]
+heuristics/subnlp/freq = -1
+
+# frequency for calling primal heuristic <trivial> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+heuristics/trivial/freq = -1
+
+# frequency for calling primal heuristic <trivialnegation> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+heuristics/trivialnegation/freq = -1
+
+# frequency for calling primal heuristic <trysol> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 1]
+heuristics/trysol/freq = -1
+
+# frequency for calling primal heuristic <undercover> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+heuristics/undercover/freq = -1
+
+# frequency for calling primal heuristic <vbounds> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+heuristics/vbounds/freq = -1
+
+# frequency for calling primal heuristic <veclendiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+heuristics/veclendiving/freq = -1
+
+# frequency for calling primal heuristic <zirounding> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 1]
+heuristics/zirounding/freq = -1
+
+# frequency for calling separator <clique> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+separating/clique/freq = -1
+
+# frequency for calling separator <flowcover> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+separating/flowcover/freq = -1
+
+# frequency for calling separator <cmir> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+separating/cmir/freq = -1
+
+# frequency for calling separator <knapsackcover> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+separating/knapsackcover/freq = -1
+
+# frequency for calling separator <aggregation> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+separating/aggregation/freq = -1
+
+# frequency for calling separator <disjunctive> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+separating/disjunctive/freq = -1
+
+# frequency for calling separator <gomory> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+separating/gomory/freq = -1
+
+# frequency for calling separator <strongcg> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+separating/strongcg/freq = -1
+
+# frequency for calling separator <gomorymi> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+separating/gomorymi/freq = -1
+
+# frequency for calling separator <impliedbounds> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+separating/impliedbounds/freq = -1
+
+# frequency for calling separator <mcf> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 0]
+separating/mcf/freq = -1
+
+# frequency for calling separator <minor> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+separating/minor/freq = -1
+
+# frequency for calling separator <rapidlearning> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 5]
+separating/rapidlearning/freq = -1
+
+# frequency for calling separator <zerohalf> (-1: never, 0: only in root node)
+# [type: int, advanced: FALSE, range: [-1,65534], default: 10]
+separating/zerohalf/freq = -1

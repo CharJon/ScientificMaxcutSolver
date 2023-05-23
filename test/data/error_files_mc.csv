@@ -1,0 +1,14 @@
+file,error
+error_delimiter.mc,uses tabs instead of whitespace
+error_too_many_edges.mc,has 5 edges although 4 are specified
+error_0_weights.mc,contains a 0-weight edge
+error_comment.mc,comment without # in the beginning of the file
+error_comment_in_file.mc,comment inside the file instead of beginning
+error_double_definition.mc,an edge is given twice
+error_header_missing.mc,header info is missing
+error_no_weight.mc,no edge weights given
+error_node_id_letter.mc,uses letters instead of integer ids
+error_node_id_range_0.mc,reference 0 node
+error_node_id_range_5.mc,reference node id outside of range
+error_selfloop.mc,contains selfloop
+error_to_few_edges.mc,has 3 edges although 4 are specified
