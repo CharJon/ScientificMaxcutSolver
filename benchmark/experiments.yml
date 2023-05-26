@@ -124,7 +124,7 @@ instances:
 
 builds:
   - name: sms
-    git: # TODO!
+    git: https://github.com/CharJon/sms.git
     recursive-clone: true
     configure:
       - args:
@@ -151,7 +151,7 @@ builds:
 revisions:
   - name: 'branchrules'
     build_version:
-      'sms': 'acda-paper'
+      'sms': 'main'
 
 
 experiments:
