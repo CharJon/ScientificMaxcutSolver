@@ -44,33 +44,16 @@ make -j 10 # -j 10 makes make use 10 threads
 
 The `gtest_filter` can be changed to only execute test matching the expression.
 
-## Code quality
+## Benchmarking
 
-### Style guide
-
-We follow the google style guide for c++. [Full version](https://google.github.io/styleguide/cppguide.html)
-, [short summary](https://jiang-zhenghong.github.io/blogs/GoogleCxxStyle.html).
-
-### Clang tidy
-
-1) build the project as described above, if necessary delete the build directory.
-   CMake will automatically create a json file (compile_commands.json) clang-tidy will use in the next step.
-3) run clang tidy on the desired files (from inside the project diretory)
-
-```bash
-cd ..
-clang-tidy --checks=* -p=build src/*
-```
-
-The checks parameter can be adjusted, see `clang-tidy --list-checks` all options. You can type `--checks=*` to use all
-checks or `--checks=google*` for all google style checks.
-
-The files to check can also be specified (e.g. `src/maxcut.cpp`).
+Example for how to use the simexpal config:
+1) ```simex b make```
+2) ```simex e launch --instset rest_test_set```
 
 
 ## git submodules
 
-git submodules are as awesome as annoying. How to hardreset all
+git submodules can be as awesome as annoying. How to hardreset all
 submodules: ```rm -fr .git/config .git/modules && git submodule deinit -f . && git submodule update --init --recursive```
 
 ## cli arguments
