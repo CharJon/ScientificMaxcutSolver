@@ -47,8 +47,9 @@ The `gtest_filter` can be changed to only execute test matching the expression.
 ## Benchmarking
 
 Example for how to use the simexpal config:
-1) ```simex b make```
-2) ```simex e launch --instset rest_test_set```
+1) ```cd benchmark```
+2) ```simex b make```
+3) ```simex e launch --instset rest_test_set```
 
 
 ## git submodules
