@@ -155,19 +155,6 @@ revisions:
 
 
 experiments:
-  - name: 'sms-solving'
-    use_builds: [ sms ]
-    args: [ 'sms', '@INSTANCE:mc@', '--seed=@REPETITION@', '@EXTRA_ARGS@', '--stats=@OUTPUT:stats.json@', '--stats-scip=@OUTPUT:scip_stats.txt@', '--history=@OUTPUT:history.json@' ]
-    repeat: 3
-    stdout: out
-    output:
-      extensions: [ 'out', 'stats.json' , 'scip_stats.txt', 'scip_stats.root.txt', 'history.json' ]
-  - name: 'sms-solutions'
-    use_builds: [ sms ]
-    args: [ 'sms', '@INSTANCE:mc@', '@EXTRA_ARGS@', '--solution=@OUTPUT:sol.json@', '--stats=@OUTPUT:stats.json@' ]
-    stdout: out
-    output:
-      extensions: [ 'out', 'stats.json' , 'sol.json' ]
   - name: 'sms-warmstart'
     use_builds: [ sms ]
     args: [ 'sms', '@INSTANCE:mc@', '@EXTRA_ARGS@', '--seed=@REPETITION@', '--warm-start-solution=@INSTANCE:sol.json@', '--statsfile=@OUTPUT:stats.json@' , '--stats-scip=@OUTPUT:scip_stats.txt@', '--timelimit=3600' ]
