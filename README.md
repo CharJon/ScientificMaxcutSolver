@@ -1,5 +1,33 @@
 # sms - Scip MaxCut Solver
 
+## Cite
+
+If you make use of this code, please cite the corresponding publication:
+
+```latex
+@inproceedings{DBLP:conf/acda/CharfreitagMM23,
+  author       = {Jonas Charfreitag and
+                  Sven Mallach and
+                  Petra Mutzel},
+  editor       = {Jonathan W. Berry and
+                  David B. Shmoys and
+                  Lenore Cowen and
+                  Uwe Naumann},
+  title        = {Integer Programming for the Maximum Cut Problem: {A} Refined Model
+                  and Implications for Branching},
+  booktitle    = {{SIAM} Conference on Applied and Computational Discrete Algorithms,
+                  {ACDA} 2023, Seattle, WA, USA, May 31 - June 2, 2023},
+  pages        = {63--74},
+  publisher    = {{SIAM}},
+  year         = {2023},
+  url          = {https://doi.org/10.1137/1.9781611977714.6},
+  doi          = {10.1137/1.9781611977714.6},
+  timestamp    = {Sat, 28 Oct 2023 13:59:35 +0200},
+  biburl       = {https://dblp.org/rec/conf/acda/CharfreitagMM23.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+```
+
 ## External dependencies
 
 All but one dependency of this project are manged by git (via submodules).
