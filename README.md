@@ -1,4 +1,6 @@
-# sms - Scip MaxCut Solver
+# sms - (Sparse | SCIP | Scientific) MaxCut Solver
+
+Solving MaxCut to optimality via Integer Programming.
 
 ## Cite
 
