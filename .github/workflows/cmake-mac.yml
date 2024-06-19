@@ -24,7 +24,7 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Install scip
+    - name: Install scip@9.0.1
       run: |
            brew update
            brew install scip
@@ -38,7 +38,7 @@ jobs:
         -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
         -DCMAKE_C_COMPILER=gcc-13
         -DCMAKE_CXX_COMPILER=g++-13
-        -DSCIP_DIR=/opt/homebrew/Cellar/scip/9.0.0/
+        -DSCIP_DIR=/opt/homebrew/Cellar/scip/9.0.1/
 
     - name: Build
       # Build your program with the given configuration
