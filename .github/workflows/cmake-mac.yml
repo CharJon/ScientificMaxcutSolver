@@ -36,8 +36,8 @@ jobs:
       run: >
         cmake -B ${{github.workspace}}/build
         -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-        -DCMAKE_C_COMPILER=gcc-13
-        -DCMAKE_CXX_COMPILER=g++-13
+        -DCMAKE_C_COMPILER=gcc-12
+        -DCMAKE_CXX_COMPILER=g++-12
         -DSCIP_DIR=/opt/homebrew/Cellar/scip/9.0.1/
 
     - name: Build
